@@ -25,6 +25,9 @@ import UIKit
 class ReminderListViewController: UICollectionViewController {
     typealias DataSource = UICollectionViewDiffableDataSource<Int, String>
 
+    //스냅샷 적용
+    typealias Snapshot = NSDiffableDataSourceSnapshot<Int, String>
+
     var dataSource: DataSource!
 
     
@@ -42,15 +45,25 @@ class ReminderListViewController: UICollectionViewController {
             cell.contentConfiguration = content
         }
         
-        dataSource = DataSource(collectionView: collectionView) {
-            (collectionView: UICollectionView, indexPath: IndexPath, itemIdentifier: String) in
-            return collectionView.dequeueConfiguredReusableCell(
-                using: cellRegistration, for: indexPath, item: itemIdentifier)
-        }
+//        dataSource = DataSource(collectionView: collectionView) {
+//            (collectionView: UICollectionView, indexPath: IndexPath, itemIdentifier: String) in
+//            return collectionView.dequeueConfiguredReusableCell(
+//                using: cellRegistration, for: indexPath, item: itemIdentifier)
+//        }
+//        
+        
+//        var snapshot = Snapshot()
+//        snapshot.appendSections([0])
+//        snapshot.appendItems(Reminder.sampleData.map { $0.title })
+//        dataSource.apply(snapshot)
+
+
+//        collectionView.dataSource = dataSource
         
     }
 
     //그룹화된 모양으로 새 목록 구성 변수를 생성하는 이름의 새 함수 생성
+    //group, item, section
     private func listLayout() -> UICollectionViewCompositionalLayout {
         var listConfiguration = UICollectionLayoutListConfiguration(appearance: .grouped)
         listConfiguration.showsSeparators = false
